@@ -3,23 +3,38 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = 3000;
+const port = 3306;
 
 // Parse form data
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // MySQL database connection
+// const db = mysql.createConnection({
+//   host: 'usernodedatabase-1.cxeeke8sibj8.us-east-1.rds.amazonaws.com',
+//   user: 'usernode',  // Replace with your MySQL username
+//   password: 'admin-1234567898',  // Replace with your MySQL password
+//   database: 'usernode'
+// });
+
+// db.connect(err => {
+//   if (err) throw err;
+//   console.log('Connected to MySQL');
+// });
+
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',  // Replace with your MySQL username
-  password: '',  // Replace with your MySQL password
-  database: 'userdb'
+  host: 'praewdb.cxeeke8sibj8.us-east-1.rds.amazonaws.com',
+  user: 'main', // เปลี่ยนเป็น username ของคุณ
+  password: 'lab-password', // เปลี่ยนเป็น password ของคุณ
+  database: 'praewDB' // เปลี่ยนเป็นชื่อ database ของคุณ
 });
 
-db.connect(err => {
+// เชื่อมต่อกับ database
+db.connect((err) => {
   if (err) throw err;
-  console.log('Connected to MySQL');
+  console.log('Connected to database!');
 });
+
+
 
 // Helper function to get navigation HTML
 const getNavigation = () => `
